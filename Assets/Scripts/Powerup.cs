@@ -19,6 +19,7 @@ public class Powerup : MonoBehaviour
         if (!isCooldown)
         {
             StartCoroutine(EnableAndDisable(cooldownTime));
+
         }
     }
 

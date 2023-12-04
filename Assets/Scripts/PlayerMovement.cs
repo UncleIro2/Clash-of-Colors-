@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     //en bool er bare en true eller false statment fx er den på jorden eller ej
     public bool isGrounded;
 
+    //værdi til knockback inde i unity 
+    public float knockbackForce = 5f;
+
 
 
     //Diffinere rb til Rigidboody 2D fra component på player 
@@ -36,33 +39,37 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Giver groudnCheck en funktion 
-        //isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckcRadius, whatIsGround);
-
         isGrounded = groundCheck();
 
-        //Movement input til player 1
+        //Movement input til player 
         if (Input.GetKey(left))
         {
-            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+            rb.AddForce(new Vector2(-moveSpeed, 0));
         }
         else if (Input.GetKey(right))
         {
-            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.AddForce(new Vector2(moveSpeed, 0));
         }
 
         if (Input.GetKeyDown(jump) && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.AddForce(new Vector2(0,100*jumpForce));
         }
-
-
+  
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player 1") && GetComponent("Player 2"))
+        {
+            // Calculate the knockback direction
+            Vector2 knockbackDirection = transform.position - collision.transform.position;
+
+            // Apply the knockback force to both players
+            rb.AddForce(knockbackDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+        }
+    }
+
     bool groundCheck()
     {
         //selve groundCheck ved brug af raycasthit        
