@@ -60,7 +60,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player 1") && GetComponent("Player 2"))
+        if (collision.gameObject.CompareTag("Player 1") && gameObject.CompareTag("Player 2"))
+        {
+            // Calculate the knockback direction
+            Vector2 knockbackDirection = transform.position - collision.transform.position;
+
+            // Apply the knockback force to both players
+            rb.AddForce(knockbackDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+        }
+        else if (collision.gameObject.CompareTag("Player 2") && gameObject.CompareTag("Player 1"))
         {
             // Calculate the knockback direction
             Vector2 knockbackDirection = transform.position - collision.transform.position;
