@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using ColorUtility = UnityEngine.ColorUtility;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,44 +27,67 @@ public class PlayerController : MonoBehaviour
     //en bool er bare en true eller false statment fx er den på jorden eller ej
     public bool isGrounded;
 
+    //værdi til knockback inde i unity 
+    public float knockbackForce = 5f;
 
 
-    //Diffinere rb til Rigidboody 2D fra component på player 
+ 
     void Start()
     {
+        //Diffinere Rigidboody 2D til rb fra component på player 
         rb = GetComponent<Rigidbody2D>();
+
+        //Diffinere spriteRenderer til spriteRenderer fra component på player 
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         //Giver groudnCheck en funktion 
-        //isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckcRadius, whatIsGround);
-
         isGrounded = groundCheck();
 
-        //Movement input til player 1
+        //Movement input til player 
         if (Input.GetKey(left))
         {
-            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+            rb.AddForce(new Vector2(-moveSpeed, 0));
         }
         else if (Input.GetKey(right))
         {
-            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.AddForce(new Vector2(moveSpeed, 0));
         }
 
         if (Input.GetKeyDown(jump) && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.AddForce(new Vector2(0,100*jumpForce));
         }
+  
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player 1") && gameObject.CompareTag("Player 2"))
+        {
+            // Calculate the knockback direction
+            Vector2 knockbackDirection = transform.position - collision.transform.position;
+
+            // Apply the knockback force to both players
+            rb.AddForce(knockbackDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+
+        }
+        else if (collision.gameObject.CompareTag("Player 2") && gameObject.CompareTag("Player 1"))
+        {
+            // Calculate the knockback direction
+            Vector2 knockbackDirection = transform.position - collision.transform.position;
+
+            // Apply the knockback force to both players
+            rb.AddForce(knockbackDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+
+        }
+       
 
 
     }
 
-    
     bool groundCheck()
     {
         //selve groundCheck ved brug af raycasthit        
@@ -72,5 +97,16 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private SpriteRenderer spriteRenderer;
+
+    public void ChangeColor(string colorCode)
+    {
+        // Lave farve valg om til HtML format og hvis det ikke bliver til en farve som vi har valgt bliver den hvid
+        Color newColor = ColorUtility.TryParseHtmlString(colorCode, out Color parsedColor) ? parsedColor : Color.white;
+
+        // Bliver til en variable som hedder newColor og giver den endelige farve.
+        spriteRenderer.color = newColor;
     }
 }
