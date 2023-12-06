@@ -9,6 +9,7 @@ public class Powerup : MonoBehaviour
 
     private void Start()
     {
+        //coledown time i starten når objektet ikke er der 
         StartCoroutine(EnableAndDisable(10f));
     }
 
@@ -23,26 +24,34 @@ public class Powerup : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player 1"))
         {
-            // Get the Script2 component from the collided GameObject
+            // Lader dette script påvirke playercontroller når der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            // Check if the Script2 component is found
+            // Checker for komponenter i playercontroller
             if (PlayerController != null)
             {
-                // Modify the variable in Script2
-                PlayerController.moveSpeed = 7;
+                // Kan ændre på movespeed nu
+                PlayerController.moveSpeed = 5;
+
+                //Ændre på farven
+                PlayerController.ChangeColor("#FAA0A0");
             }
+
         }
         if (other.gameObject.CompareTag("Player 2"))
         {
-            // Get the Script2 component from the collided GameObject
+            // Lader dette script påvirke playercontroller når der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            // Check if the Script2 component is found
+            // Checker for komponenter i playercontroller
             if (PlayerController != null)
             {
-                // Modify the variable in Script2
+                // Kan ændre på movespeed nu
                 PlayerController.moveSpeed = 5;
+
+                //Ændre på farven
+                PlayerController.ChangeColor("#DFFF00");
+
             }
         }
     }
