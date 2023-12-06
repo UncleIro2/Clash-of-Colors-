@@ -54,6 +54,19 @@ public class Powerup : MonoBehaviour
 
             }
         }
+        if (other.gameObject.CompareTag("Player 1"))
+        {
+            PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
+
+            if (PlayerController != null)
+            {
+                if (other.gameObject.CompareTag("Player 1"))
+                {
+                    PlayerController.hasCollided = true;
+                }
+            }
+        }
+
     }
 
     IEnumerator EnableAndDisable(float cooldown)

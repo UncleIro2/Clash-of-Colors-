@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ARDA 2_0: 8262212919157108406
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
