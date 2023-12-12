@@ -29,7 +29,7 @@ public class TIMER : MonoBehaviour
                 Debug.Log("GO!");
                 TimeLeft = 0; 
                 TimerOn = false;
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("Forrest");
             }
             TimerTxt.text = Mathf.FloorToInt(TimeLeft).ToString();
         }
