@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     // Sætte dash til at være false indtil der er noget som ændre det til true
     public bool dashController = false;
 
+    private bool doublejump;
 
 
 
@@ -76,11 +77,22 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(moveSpeed * Time.deltaTime * 500, 0));
         }
 
-        if (Input.GetKeyDown(jump) && isGrounded)
+
+        if (Input.GetKeyDown(jump))
         {
-            rb.AddForce(new Vector2(0,100*jumpForce));
+            if (groundCheck() || doublejump) 
+            { 
+                rb.AddForce(new Vector2(0,100*jumpForce));
+                doublejump = !doublejump;
+            
+            }
         }
-        
+
+        if (groundCheck() && !Input.GetKeyDown(jump))
+        {
+            doublejump = false;
+        }
+
         //Dash input 
         if (Input.GetKeyDown(dash) && canDash)
         {
@@ -148,6 +160,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
     }
+
+
 
     private IEnumerator Dash()
     {

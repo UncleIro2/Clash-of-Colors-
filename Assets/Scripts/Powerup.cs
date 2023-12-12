@@ -31,7 +31,7 @@ public class Powerup : MonoBehaviour
                 // Lader dette script påvirke playercontroller når der bliver collided med GameObject
                 PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-                int randomIndex = Random.Range(1, 3);
+                int randomIndex = Random.Range(1, 4);
 
                 if (randomIndex == 1)
                 {
@@ -54,6 +54,16 @@ public class Powerup : MonoBehaviour
                     PlayerController.ChangeColor("#702963");
                     
                 }
+
+                else if (randomIndex == 3)
+                {
+                    // reset til ingen powerups
+                    PlayerController.dashController = false;
+                    PlayerController.moveSpeed = 3f;
+
+                    //Ændre på farven
+                    PlayerController.ChangeColor("#FF0000");
+                }
             }
 
 
@@ -63,35 +73,48 @@ public class Powerup : MonoBehaviour
             // Lader dette script påvirke playercontroller når der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            int randomIndex = Random.Range(1, 3);
+            int randomIndex = Random.Range(1, 4);
+
+
+            PlayerController.dashController = false;
+            PlayerController.moveSpeed = 3f;
 
             if (randomIndex == 1)
             {
-                
+
                 // Kan ændre på movespeed nu
                 PlayerController.moveSpeed = 5;
 
                 //Ændre på farven
                 PlayerController.ChangeColor("#DFFF00");
 
-                
+
             }
 
             else if (randomIndex == 2)
             {
-               
+
                 // Lader dig dashe 
                 PlayerController.dashController = true;
 
                 //Ændre på farven
                 PlayerController.ChangeColor("#C4B454");
-                
+
             }
-        }
+
+            else if (randomIndex == 3)
+            {
+                // reset til ingen powerups
+                PlayerController.dashController = false;
+                PlayerController.moveSpeed = 3f;
+
+                //Ændre på farven
+                PlayerController.ChangeColor("#00FF00");
+            }
 
 
-        
-           
+
+        } 
         
     }
 
