@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode left;
     public KeyCode right;
     public KeyCode jump;
+    public KeyCode dash;
 
     //navgive rigidbody fra player til rb i scripted 
     private Rigidbody2D rb;
@@ -66,11 +67,11 @@ public class PlayerController : MonoBehaviour
         //Movement input til player 
         if (Input.GetKey(left))
         {
-            rb.AddForce(new Vector2(-moveSpeed, 0));
+            rb.AddForce(new Vector2(-moveSpeed * Time.deltaTime * 500, 0));
         }
         else if (Input.GetKey(right))
         {
-            rb.AddForce(new Vector2(moveSpeed, 0));
+            rb.AddForce(new Vector2(moveSpeed * Time.deltaTime * 500, 0));
         }
 
 
@@ -163,7 +164,17 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+     //Selve koden for at vende mod h�jre
+    private void Flip()
+    {
+        if (isFacingRight && rb.velocity.x < 0f || !isFacingRight && rb.velocity.x > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
 
 
 
