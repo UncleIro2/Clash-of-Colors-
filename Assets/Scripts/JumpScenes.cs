@@ -46,14 +46,12 @@ public class SceneTransition : MonoBehaviour
     {
         SceneManager.LoadScene("Arda");
     }
-    public class ButtonClick : MonoBehaviour
+    public void LoadMapSelector()
     {
-        public SceneTransition sceneTransition;
-
-        private void OnButtonClick()
-
-        {
-            sceneTransition.LoadSampleScene();
-        }
+        SceneManager.LoadScene("MapSelector");
+    }
+    public void LoadForrest()
+    {
+        SceneManager.LoadScene("Forrest");
     }
 }
