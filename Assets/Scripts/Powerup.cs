@@ -27,53 +27,43 @@ public class Powerup : MonoBehaviour
             // Lader dette script p�virke playercontroller n�r der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            // Checker for komponenter i playercontroller
-            if (PlayerController != null)
+            int randomIndex = Random.Range(1, 4);
+
+            
+            PlayerController.dashController = false;
+            PlayerController.moveSpeed = 3f;
+
+            if (randomIndex == 1)
             {
+                    
                 // Kan �ndre p� movespeed nu
                 PlayerController.moveSpeed = 5;
 
+                //�ndre p� farven
+                PlayerController.ChangeColor("#FAA0A0");
+                    
             }
-            if (other.gameObject.CompareTag("Player 1"))
+
+            else if (randomIndex == 2)
+            {               
+                    
+                // Lader dig dashe 
+                PlayerController.dashController = true;
+                    
+                    //�ndre p� farven
+                PlayerController.ChangeColor("#702963");
+                    
+            }
+
+            else if (randomIndex == 3)
             {
-                // Lader dette script p�virke playercontroller n�r der bliver collided med GameObject
-                PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
+                // reset til ingen powerups
+                PlayerController.dashController = false;
+                PlayerController.moveSpeed = 3f;
 
-                int randomIndex = Random.Range(1, 4);
-
-                if (randomIndex == 1)
-                {
-                    
-                    // Kan �ndre p� movespeed nu
-                    PlayerController.moveSpeed = 5;
-
-                    //�ndre p� farven
-                    PlayerController.ChangeColor("#FAA0A0");
-                    
-                }
-
-                else if (randomIndex == 2)
-                {               
-                    
-                    // Lader dig dashe 
-                    PlayerController.dashController = true;
-                    
-                     //�ndre p� farven
-                    PlayerController.ChangeColor("#702963");
-                    
-                }
-
-                else if (randomIndex == 3)
-                {
-                    // reset til ingen powerups
-                    PlayerController.dashController = false;
-                    PlayerController.moveSpeed = 3f;
-
-                    //�ndre p� farven
-                    PlayerController.ChangeColor("#FF0000");
-                }
+                //�ndre p� farven
+                PlayerController.ChangeColor("#FF0000");
             }
-
         }
         if (other.gameObject.CompareTag("Player 2"))
         {
