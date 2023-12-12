@@ -9,7 +9,7 @@ using ColorUtility = UnityEngine.ColorUtility;
 
 public class PlayerController : MonoBehaviour
 {
-    //værider der kan ændre i selve unity 
+    //vï¿½rider der kan ï¿½ndre i selve unity 
     public float moveSpeed;
     public float jumpForce;
 
@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     public KeyCode left;
     public KeyCode right;
     public KeyCode jump;
-    public KeyCode dash;
 
     //navgive rigidbody fra player til rb i scripted 
     private Rigidbody2D rb;
@@ -25,10 +24,10 @@ public class PlayerController : MonoBehaviour
     //det er en layer som man skal give til sinde paltforme 
     public LayerMask whatIsGround;
 
-    //en bool er bare en true eller false statment fx er den på jorden eller ej
+    //en bool er bare en true eller false statment fx er den pï¿½ jorden eller ej
     public bool isGrounded;
 
-    //værdi til knockback inde i unity 
+    //vï¿½rdi til knockback inde i unity 
     public float knockbackForce = 5f;
 
     //Variabler til dash 
@@ -39,28 +38,25 @@ public class PlayerController : MonoBehaviour
     private float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
 
-    //Variabel for at altid vende mod højre
+    //Variabel for at altid vende mod hï¿½jre
     private bool isFacingRight = true;
 
-    // Sætte dash til at være false indtil der er noget som ændre det til true
+    // Sï¿½tte dash til at vï¿½re false indtil der er noget som ï¿½ndre det til true
     public bool dashController = false;
 
     private bool doublejump;
 
 
 
+ 
     void Start()
     {
-        //Diffinere Rigidboody 2D til rb fra component på player 
+        //Diffinere Rigidboody 2D til rb fra component pï¿½ player 
         rb = GetComponent<Rigidbody2D>();
 
-        //Diffinere spriteRenderer til spriteRenderer fra component på player 
+        //Diffinere spriteRenderer til spriteRenderer fra component pï¿½ player 
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-
-
-
 
     void Update()
     {
@@ -70,11 +66,11 @@ public class PlayerController : MonoBehaviour
         //Movement input til player 
         if (Input.GetKey(left))
         {
-            rb.AddForce(new Vector2(-moveSpeed * Time.deltaTime * 500, 0));
+            rb.AddForce(new Vector2(-moveSpeed, 0));
         }
         else if (Input.GetKey(right))
         {
-            rb.AddForce(new Vector2(moveSpeed * Time.deltaTime * 500, 0));
+            rb.AddForce(new Vector2(moveSpeed, 0));
         }
 
 
@@ -99,33 +95,11 @@ public class PlayerController : MonoBehaviour
            StartCoroutine(Dash());
         }
 
-        //Sørge gor at flippe spilleren mod højre 
+        //Sï¿½rge gor at flippe spilleren mod hï¿½jre 
         Flip();
 
     }
 
-
-
-
-    //Selve koden for at vende mod højre
-    private void Flip()
-    {
-        if (isFacingRight && rb.velocity.x < 0f || !isFacingRight && rb.velocity.x > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
-    }
-
-
-
-
-
-
-
-    //Knockback
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player 1") && gameObject.CompareTag("Player 2"))
@@ -146,12 +120,15 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(knockbackDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
         }
+       
+
+
     }
 
 
 
 
-    //Sørge for at man kan dashe igen efter coledown
+    //Sï¿½rge for at man kan dashe igen efter coledown
     private void FixedUpdate()
     {
 
@@ -201,12 +178,8 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-
-
-
-
-
     private SpriteRenderer spriteRenderer;
+
     public void ChangeColor(string colorCode)
     {
         // Lave farve valg om til HtML format og hvis det ikke bliver til en farve som vi har valgt bliver den hvid
