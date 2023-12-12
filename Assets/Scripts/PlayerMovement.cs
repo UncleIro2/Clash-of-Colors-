@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     //Variabel for at altid vende mod højre
     private bool isFacingRight = true;
 
-    public bool hasCollided = false;
+    // Sætte dash til at være false indtil der er noget som ændre det til true
+    public bool dashController = false;
 
 
 
@@ -150,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        if (hasCollided)
+        if (dashController)
         {
 
             //Koden for at dashe 
@@ -159,9 +160,9 @@ public class PlayerController : MonoBehaviour
             float originalGravity = 5f;
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-            //tr.emitting = true;
+            tr.emitting = true;
             yield return new WaitForSeconds(dashingTime);
-            //tr.emitting = false;
+            tr.emitting = false;
             rb.gravityScale = originalGravity;
             isDashing = false;
             yield return new WaitForSeconds(dashingCooldown);
