@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode left;
     public KeyCode right;
     public KeyCode jump;
+    public KeyCode dash;
 
     //navgive rigidbody fra player til rb i scripted 
     private Rigidbody2D rb;
@@ -30,8 +31,23 @@ public class PlayerController : MonoBehaviour
     //værdi til knockback inde i unity 
     public float knockbackForce = 5f;
 
+    //Variabler til dash 
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+    [SerializeField] private TrailRenderer tr;
 
- 
+    //Variabel for at altid vende mod højre
+    private bool isFacingRight = true;
+
+    // Sætte dash til at være false indtil der er noget som ændre det til true
+    public bool dashController = false;
+
+
+
+
     void Start()
     {
         //Diffinere Rigidboody 2D til rb fra component på player 
@@ -41,6 +57,10 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+
+
+
+
     void Update()
     {
         //Giver groudnCheck en funktion 
@@ -49,20 +69,51 @@ public class PlayerController : MonoBehaviour
         //Movement input til player 
         if (Input.GetKey(left))
         {
-            rb.AddForce(new Vector2(-moveSpeed, 0));
+            rb.AddForce(new Vector2(-moveSpeed * Time.deltaTime * 500, 0));
         }
         else if (Input.GetKey(right))
         {
-            rb.AddForce(new Vector2(moveSpeed, 0));
+            rb.AddForce(new Vector2(moveSpeed * Time.deltaTime * 500, 0));
         }
 
         if (Input.GetKeyDown(jump) && isGrounded)
         {
             rb.AddForce(new Vector2(0,100*jumpForce));
         }
-  
+        
+        //Dash input 
+        if (Input.GetKeyDown(dash) && canDash)
+        {
+           StartCoroutine(Dash());
+        }
+
+        //Sørge gor at flippe spilleren mod højre 
+        Flip();
+
     }
 
+
+
+
+    //Selve koden for at vende mod højre
+    private void Flip()
+    {
+        if (isFacingRight && rb.velocity.x < 0f || !isFacingRight && rb.velocity.x > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
+
+
+
+
+
+
+
+    //Knockback
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player 1") && gameObject.CompareTag("Player 2"))
@@ -83,10 +134,47 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(knockbackDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
         }
-       
-
-
     }
+
+
+
+
+    //Sørge for at man kan dashe igen efter coledown
+    private void FixedUpdate()
+    {
+
+        if (isDashing)
+        {
+            return;
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        if (dashController)
+        {
+
+            //Koden for at dashe 
+            canDash = false;
+            isDashing = true;
+            float originalGravity = 5f;
+            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+            tr.emitting = true;
+            yield return new WaitForSeconds(dashingTime);
+            tr.emitting = false;
+            rb.gravityScale = originalGravity;
+            isDashing = false;
+            yield return new WaitForSeconds(dashingCooldown);
+            canDash = true;
+        }
+    }
+
+
+
+
+
+
 
     bool groundCheck()
     {
@@ -99,8 +187,12 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    private SpriteRenderer spriteRenderer;
 
+
+
+
+
+    private SpriteRenderer spriteRenderer;
     public void ChangeColor(string colorCode)
     {
         // Lave farve valg om til HtML format og hvis det ikke bliver til en farve som vi har valgt bliver den hvid
