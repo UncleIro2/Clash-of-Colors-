@@ -6,40 +6,48 @@ public class Powerup : MonoBehaviour
     //coledown time 
     public float cooldownTime = 1.0f;
     private bool isCooldown = false;
-  
 
     private void Start()
     {
-        //coledown time i starten når objektet ikke er der 
+        //coledown time i starten nï¿½r objektet ikke er der 
         StartCoroutine(EnableAndDisable(10f));
-       
-
     }
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
-   
-            //Kører rotinen 
-            if (!isCooldown)
+        //Kï¿½rer rotinen 
+        if (!isCooldown)
+        {
+            StartCoroutine(EnableAndDisable(cooldownTime));
+
+        }
+        if (other.gameObject.CompareTag("Player 1"))
+        {
+            // Lader dette script pï¿½virke playercontroller nï¿½r der bliver collided med GameObject
+            PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
+
+            // Checker for komponenter i playercontroller
+            if (PlayerController != null)
             {
-                StartCoroutine(EnableAndDisable(cooldownTime));
+                // Kan ï¿½ndre pï¿½ movespeed nu
+                PlayerController.moveSpeed = 5;
 
             }
             if (other.gameObject.CompareTag("Player 1"))
             {
-                // Lader dette script påvirke playercontroller når der bliver collided med GameObject
+                // Lader dette script pï¿½virke playercontroller nï¿½r der bliver collided med GameObject
                 PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-                int randomIndex = Random.Range(1, 3);
+                int randomIndex = Random.Range(1, 4);
 
                 if (randomIndex == 1)
                 {
                     
-                    // Kan ændre på movespeed nu
+                    // Kan ï¿½ndre pï¿½ movespeed nu
                     PlayerController.moveSpeed = 5;
 
-                    //Ændre på farven
+                    //ï¿½ndre pï¿½ farven
                     PlayerController.ChangeColor("#FAA0A0");
                     
                 }
@@ -50,51 +58,72 @@ public class Powerup : MonoBehaviour
                     // Lader dig dashe 
                     PlayerController.dashController = true;
                     
-                     //Ændre på farven
+                     //ï¿½ndre pï¿½ farven
                     PlayerController.ChangeColor("#702963");
                     
                 }
+
+                else if (randomIndex == 3)
+                {
+                    // reset til ingen powerups
+                    PlayerController.dashController = false;
+                    PlayerController.moveSpeed = 3f;
+
+                    //ï¿½ndre pï¿½ farven
+                    PlayerController.ChangeColor("#FF0000");
+                }
             }
 
-
-
+        }
         if (other.gameObject.CompareTag("Player 2"))
         {
-            // Lader dette script påvirke playercontroller når der bliver collided med GameObject
+            // Lader dette script pï¿½virke playercontroller nï¿½r der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            int randomIndex = Random.Range(1, 3);
+            int randomIndex = Random.Range(1, 4);
+
+
+            PlayerController.dashController = false;
+            PlayerController.moveSpeed = 3f;
 
             if (randomIndex == 1)
             {
-                
-                // Kan ændre på movespeed nu
+
+                // Kan ï¿½ndre pï¿½ movespeed nu
                 PlayerController.moveSpeed = 5;
 
-                //Ændre på farven
+                //ï¿½ndre pï¿½ farven
                 PlayerController.ChangeColor("#DFFF00");
 
-                
+
             }
 
             else if (randomIndex == 2)
             {
-               
+
                 // Lader dig dashe 
                 PlayerController.dashController = true;
 
-                //Ændre på farven
+                //ï¿½ndre pï¿½ farven
                 PlayerController.ChangeColor("#C4B454");
-                
+
             }
-        }
+
+            else if (randomIndex == 3)
+            {
+                // reset til ingen powerups
+                PlayerController.dashController = false;
+                PlayerController.moveSpeed = 3f;
+
+                //ï¿½ndre pï¿½ farven
+                PlayerController.ChangeColor("#00FF00");
+            }
 
 
-        
-           
+
+        } 
         
     }
-
 
     IEnumerator EnableAndDisable(float cooldown)
     {
@@ -107,7 +136,7 @@ public class Powerup : MonoBehaviour
 
         yield return new WaitForSeconds(cooldown);
 
-        //tænder for obejektet
+        //tï¿½nder for obejektet
         Debug.Log("Enabling object");
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<CircleCollider2D>().enabled = true;

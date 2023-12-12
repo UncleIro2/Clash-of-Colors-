@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class KillPlayer : MonoBehaviour
 {
-    public int Respawn;
+    public string sceneName;
     public GameManager gm;
     
     void OnTriggerEnter2D(Collider2D other)

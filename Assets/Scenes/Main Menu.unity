@@ -1101,7 +1101,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 336432968}
         m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
-        m_MethodName: LoadGuide
+        m_MethodName: LoadMapSelector
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
