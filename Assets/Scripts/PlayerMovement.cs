@@ -36,9 +36,9 @@ public class PlayerController : MonoBehaviour
     //Variabler til dash 
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 24f;
+    private float dashingPower = 30f;
     private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    private float dashingCooldown = 0.5f;
     [SerializeField] private TrailRenderer tr;
 
     //Variabel for at altid vende mod h�jre
@@ -47,11 +47,14 @@ public class PlayerController : MonoBehaviour
     // S�tte dash til at v�re false indtil der er noget som �ndre det til true
     public bool dashController = false;
 
-    
+    //doublejump
     public bool doublejump;
-
     public bool doublejumpcontroller = false;
 
+    //fly  
+    private bool canfly =true;
+    private bool isflying;
+    public bool flycontroller = false;
 
 
     void Start()
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
                 {
                     doublejump = !doublejump;
                 }
+
             }
         }
 
@@ -98,6 +102,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(ability) && canDash)
         {
            StartCoroutine(Dash());
+        }
+
+        //fly input 
+        if (Input.GetKey(ability) && canfly)
+        {
+            if (!groundCheck())
+            {
+                StartCoroutine(Fly());
+            }
         }
 
         //S�rge gor at flippe spilleren mod h�jre 
@@ -125,9 +138,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(knockbackDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
         }
-       
-
-
+      
     }
 
 
@@ -141,9 +152,30 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        
+        if(isflying)
+        {
+            return;
+        }
     }
 
+    //Det der styre svævning
+    private IEnumerator Fly()
+    {
+        if (flycontroller) 
+        {
+            canfly = false;
+            isflying = true;
+            float originalGravity = 5f;
+            rb.gravityScale = 1f;
+            yield return new WaitForSeconds(0.1f);
+            rb.gravityScale = originalGravity;
+            isflying = false;
+            yield return null;
+            canfly = true;
 
+        }
+    }
 
     private IEnumerator Dash()
     {
@@ -185,7 +217,6 @@ public class PlayerController : MonoBehaviour
     bool groundCheck()
     {
         //selve groundCheck ved brug af raycasthit
-        //
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, jumpSensitivity, whatIsGround);
         if (hit.collider != null)

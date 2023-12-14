@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ForrestBaneV2_0: 6447853651563549453
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
