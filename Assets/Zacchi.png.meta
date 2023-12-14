@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Zacchi_0: 6887389349793390094
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

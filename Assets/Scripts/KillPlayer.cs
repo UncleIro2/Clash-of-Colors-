@@ -8,6 +8,7 @@ public class KillPlayer : MonoBehaviour
     public string sceneName;
     public GameManager gm;
 
+
     
     void OnTriggerEnter2D(Collider2D other)
     {
