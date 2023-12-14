@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode left;
     public KeyCode right;
     public KeyCode jump;
-    public KeyCode dash;
+    public KeyCode ability;
 
     //navgive rigidbody fra player til rb i scripted 
     private Rigidbody2D rb;
@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     //en bool er bare en true eller false statment fx er den p� jorden eller ej
     public bool isGrounded;
+
+    public float jumpSensitivity;
 
     //v�rdi til knockback inde i unity 
     public float knockbackForce = 5f;
@@ -45,11 +47,13 @@ public class PlayerController : MonoBehaviour
     // S�tte dash til at v�re false indtil der er noget som �ndre det til true
     public bool dashController = false;
 
-    private bool doublejump;
+    
+    public bool doublejump;
+
+    public bool doublejumpcontroller = false;
 
 
 
- 
     void Start()
     {
         //Diffinere Rigidboody 2D til rb fra component p� player 
@@ -74,24 +78,24 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(moveSpeed * Time.deltaTime * 500, 0));
         }
 
-
+        //kode til jump og double
         if (Input.GetKeyDown(jump))
         {
             if (groundCheck() || doublejump) 
             { 
                 rb.AddForce(new Vector2(0,100*jumpForce));
-                doublejump = !doublejump;
-            
+
+                if (doublejumpcontroller)
+                {
+                    doublejump = !doublejump;
+                }
             }
         }
 
-        if (groundCheck() && !Input.GetKeyDown(jump))
-        {
-            doublejump = false;
-        }
+       
 
         //Dash input 
-        if (Input.GetKeyDown(dash) && canDash)
+        if (Input.GetKeyDown(ability) && canDash)
         {
            StartCoroutine(Dash());
         }
@@ -180,10 +184,13 @@ public class PlayerController : MonoBehaviour
 
     bool groundCheck()
     {
-        //selve groundCheck ved brug af raycasthit        
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.55f, whatIsGround);
+        //selve groundCheck ved brug af raycasthit
+        //
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, jumpSensitivity, whatIsGround);
         if (hit.collider != null)
         {
+            print(hit.collider);
             return true;
         }
         return false;

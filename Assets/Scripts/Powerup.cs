@@ -27,9 +27,9 @@ public class Powerup : MonoBehaviour
             // Lader dette script p�virke playercontroller n�r der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            int randomIndex = Random.Range(1, 4);
+            int randomIndex = Random.Range(1,5);
 
-            
+            PlayerController.dashController = false;
             PlayerController.dashController = false;
             PlayerController.moveSpeed = 3f;
 
@@ -60,17 +60,32 @@ public class Powerup : MonoBehaviour
                 // reset til ingen powerups
                 PlayerController.dashController = false;
                 PlayerController.moveSpeed = 3f;
+                PlayerController.dashController = false;
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#FF0000");
             }
+           
+            else if (randomIndex == 4)
+            {
+
+                // Lader dig dashe 
+                PlayerController.doublejumpcontroller = true;
+
+                //�ndre p� farven
+                PlayerController.ChangeColor("#EC5800");
+
+            }
         }
+
+
+
         if (other.gameObject.CompareTag("Player 2"))
         {
             // Lader dette script p�virke playercontroller n�r der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            int randomIndex = Random.Range(1, 4);
+            int randomIndex = Random.Range(1, 5);
 
 
             PlayerController.dashController = false;
@@ -104,12 +119,23 @@ public class Powerup : MonoBehaviour
                 // reset til ingen powerups
                 PlayerController.dashController = false;
                 PlayerController.moveSpeed = 3f;
+                PlayerController.doublejumpcontroller = false;
+
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#00FF00");
             }
 
+            else if (randomIndex == 4)
+            {
 
+                // Lader dig dashe 
+                PlayerController.doublejumpcontroller = true;
+
+                //�ndre p� farven
+                PlayerController.ChangeColor("#40B5AD");
+
+            }
 
         } 
         

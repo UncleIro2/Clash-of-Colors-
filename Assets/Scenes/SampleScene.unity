@@ -801,14 +801,17 @@ MonoBehaviour:
   left: 276
   right: 275
   jump: 273
-  dash: 274
+  ability: 274
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   isGrounded: 0
+  jumpSensitivity: 0.55
   knockbackForce: 10
   tr: {fileID: 730553017}
   dashController: 0
+  doublejump: 0
+  doublejumpcontroller: 0
 --- !u!212 &730553016
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1385,14 +1388,17 @@ MonoBehaviour:
   left: 97
   right: 100
   jump: 119
-  dash: 115
+  ability: 115
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   isGrounded: 0
+  jumpSensitivity: 0.55
   knockbackForce: 10
   tr: {fileID: 778050900}
   dashController: 0
+  doublejump: 0
+  doublejumpcontroller: 0
 --- !u!212 &778050896
 SpriteRenderer:
   m_ObjectHideFlags: 0
