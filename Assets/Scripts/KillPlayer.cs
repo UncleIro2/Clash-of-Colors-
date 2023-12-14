@@ -7,24 +7,21 @@ public class KillPlayer : MonoBehaviour
 {
     public string sceneName;
     public GameManager gm;
+
     
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player 1"))
         {
             gm.winner = 2;
+            gm.Score2 += 1;
             Time.timeScale = 0;
         }
-        else other.CompareTag("Player 2");
+        else if(other.CompareTag("Player 2"))
         {
             gm.winner = 1;
+            gm.Score1 += 1;
             Time.timeScale = 0;
         }
-    }
-
-    void RestartGame()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(sceneName);
     }
 }
