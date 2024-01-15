@@ -138,7 +138,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(knockbackDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
         }
-      
     }
 
 
