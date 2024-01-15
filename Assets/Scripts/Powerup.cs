@@ -31,7 +31,7 @@ public class Powerup : MonoBehaviour
 
             PlayerController.dashController = false;
             PlayerController.doublejumpcontroller = false;
-            PlayerController.moveSpeed = 3f;
+            PlayerController.moveSpeed = 4f;
             PlayerController.flycontroller = false;
 
 
@@ -39,7 +39,7 @@ public class Powerup : MonoBehaviour
             {
                     
                 // Kan �ndre p� movespeed nu
-                PlayerController.moveSpeed = 5;
+                PlayerController.moveSpeed = 6;
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#FAA0A0");
@@ -61,7 +61,7 @@ public class Powerup : MonoBehaviour
             {
                 // reset til ingen powerups
                 PlayerController.dashController = false;
-                PlayerController.moveSpeed = 3f;
+                PlayerController.moveSpeed = 4f;
                 PlayerController.dashController = false;
                 PlayerController.flycontroller = false;
 
@@ -103,7 +103,7 @@ public class Powerup : MonoBehaviour
 
 
             PlayerController.dashController = false;
-            PlayerController.moveSpeed = 3f;
+            PlayerController.moveSpeed = 4f;
             PlayerController.doublejumpcontroller = false;
             PlayerController.flycontroller = false;
 
@@ -113,7 +113,7 @@ public class Powerup : MonoBehaviour
             {
 
                 // Kan �ndre p� movespeed nu
-                PlayerController.moveSpeed = 5;
+                PlayerController.moveSpeed = 6;
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#DFFF00");
@@ -136,7 +136,7 @@ public class Powerup : MonoBehaviour
             {
                 // reset til ingen powerups
                 PlayerController.dashController = false;
-                PlayerController.moveSpeed = 3f;
+                PlayerController.moveSpeed = 4f;
                 PlayerController.doublejumpcontroller = false;
                 PlayerController.flycontroller = false;
 
