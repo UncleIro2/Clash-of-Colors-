@@ -113,7 +113,7 @@ public class Powerup : MonoBehaviour
             {
 
                 // Kan �ndre p� movespeed nu
-                PlayerController.moveSpeed = 6;
+                PlayerController.moveSpeed = 5;
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#DFFF00");
