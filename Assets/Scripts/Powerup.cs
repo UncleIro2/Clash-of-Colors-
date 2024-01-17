@@ -27,17 +27,19 @@ public class Powerup : MonoBehaviour
             // Lader dette script p�virke playercontroller n�r der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            int randomIndex = Random.Range(1,5);
+            int randomIndex = Random.Range(1,6);
 
             PlayerController.dashController = false;
-            PlayerController.dashController = false;
-            PlayerController.moveSpeed = 3f;
+            PlayerController.doublejumpcontroller = false;
+            PlayerController.moveSpeed = 4f;
+            PlayerController.flycontroller = false;
+
 
             if (randomIndex == 1)
             {
                     
                 // Kan �ndre p� movespeed nu
-                PlayerController.moveSpeed = 5;
+                PlayerController.moveSpeed = 6;
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#FAA0A0");
@@ -59,8 +61,10 @@ public class Powerup : MonoBehaviour
             {
                 // reset til ingen powerups
                 PlayerController.dashController = false;
-                PlayerController.moveSpeed = 3f;
+                PlayerController.moveSpeed = 4f;
                 PlayerController.dashController = false;
+                PlayerController.flycontroller = false;
+
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#FF0000");
@@ -76,6 +80,16 @@ public class Powerup : MonoBehaviour
                 PlayerController.ChangeColor("#EC5800");
 
             }
+            else if (randomIndex == 5)
+            {
+
+                // Lader dig dashe 
+                PlayerController.flycontroller = true;
+
+                //�ndre p� farven
+                PlayerController.ChangeColor("#000000");
+
+            }
         }
 
 
@@ -85,17 +99,21 @@ public class Powerup : MonoBehaviour
             // Lader dette script p�virke playercontroller n�r der bliver collided med GameObject
             PlayerController PlayerController = other.gameObject.GetComponent<PlayerController>();
 
-            int randomIndex = Random.Range(1, 5);
+            int randomIndex = Random.Range(1, 6);
 
 
             PlayerController.dashController = false;
-            PlayerController.moveSpeed = 3f;
+            PlayerController.moveSpeed = 4f;
+            PlayerController.doublejumpcontroller = false;
+            PlayerController.flycontroller = false;
+
+
 
             if (randomIndex == 1)
             {
 
                 // Kan �ndre p� movespeed nu
-                PlayerController.moveSpeed = 5;
+                PlayerController.moveSpeed = 6;
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#DFFF00");
@@ -118,8 +136,10 @@ public class Powerup : MonoBehaviour
             {
                 // reset til ingen powerups
                 PlayerController.dashController = false;
-                PlayerController.moveSpeed = 3f;
+                PlayerController.moveSpeed = 4f;
                 PlayerController.doublejumpcontroller = false;
+                PlayerController.flycontroller = false;
+
 
 
                 //�ndre p� farven
@@ -136,7 +156,16 @@ public class Powerup : MonoBehaviour
                 PlayerController.ChangeColor("#40B5AD");
 
             }
+            else if (randomIndex == 5)
+            {
 
+                // Lader dig dashe 
+                PlayerController.flycontroller = true;
+
+                //�ndre p� farven
+                PlayerController.ChangeColor("#FFFFFF");
+
+            }
         } 
         
     }
