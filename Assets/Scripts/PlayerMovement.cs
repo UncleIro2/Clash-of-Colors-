@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     //Variabler til dash 
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 30f;
+    private float dashingPower = 20f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 0.5f;
     [SerializeField] private TrailRenderer tr;

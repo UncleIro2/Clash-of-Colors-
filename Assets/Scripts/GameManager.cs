@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         p2Con.doublejumpcontroller = false;
         p2Con.moveSpeed = 4f;
         p2Con.flycontroller = false;
-        p2Con.ChangeColor("#00FF00");
+        p2Con.ChangeColor("#001BFF");
         foreach(Transform child in powerupContainer.transform)
         {
             StartCoroutine(child.gameObject.GetComponent<Powerup>().EnableAndDisable(10f));
