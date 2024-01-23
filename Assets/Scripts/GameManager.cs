@@ -52,7 +52,8 @@ public class GameManager : MonoBehaviour
         player2.transform.localPosition = orgPlayer2Pos;
         player1.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player2.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        // TODO: Reset powerup
+        
+        
         Time.timeScale = 1;
         p1Wins.SetActive(false);
         p2Wins.SetActive(false);
@@ -71,6 +72,6 @@ public class GameManager : MonoBehaviour
         p2Con.flycontroller = false;
         p2Con.ChangeColor("#00FF00");
 
-
+        //TODO restet powerup
     }
 }

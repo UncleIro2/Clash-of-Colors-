@@ -31,7 +31,7 @@ public class Powerup : MonoBehaviour
 
             PlayerController.dashController = false;
             PlayerController.doublejumpcontroller = false;
-            PlayerController.moveSpeed = 4f;
+            PlayerController.moveSpeed = 3.5f;
             PlayerController.flycontroller = false;
 
 
@@ -39,7 +39,7 @@ public class Powerup : MonoBehaviour
             {
                     
                 // Kan �ndre p� movespeed nu
-                PlayerController.moveSpeed = 6;
+                PlayerController.moveSpeed = 5.5f;
 
                 //�ndre p� farven
                 PlayerController.ChangeColor("#FAA0A0");
@@ -61,7 +61,7 @@ public class Powerup : MonoBehaviour
             {
                 // reset til ingen powerups
                 PlayerController.dashController = false;
-                PlayerController.moveSpeed = 4f;
+                PlayerController.moveSpeed = 3.5f;
                 PlayerController.dashController = false;
                 PlayerController.flycontroller = false;
 
