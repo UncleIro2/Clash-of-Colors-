@@ -7924,7 +7924,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &904921591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18492,7 +18492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1355766910
 Transform:
   m_ObjectHideFlags: 0
@@ -18928,7 +18928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1527373254
 Transform:
   m_ObjectHideFlags: 0
@@ -19702,7 +19702,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &1629050418
 MonoBehaviour:
   m_ObjectHideFlags: 0
