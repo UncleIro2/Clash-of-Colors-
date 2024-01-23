@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         //fly input 
         if (Input.GetKey(ability) && canfly)
         {
-            if (!groundCheck())
+            if (!groundCheck() && rb.velocityY < 0)
             {
                 StartCoroutine(Fly());
             }
