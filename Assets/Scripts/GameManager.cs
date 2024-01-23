@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     PlayerController p2Con;
 
+    public GameObject powerupContainer;
+
     void Start()
     {
         orgPlayer1Pos = player1.transform.position;
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
             p2Wins.SetActive(true);
             Score2txt.text = Score2.ToString();
         }
+        
+
     }
     public void ResetScene()
     {
@@ -71,7 +75,12 @@ public class GameManager : MonoBehaviour
         p2Con.moveSpeed = 4f;
         p2Con.flycontroller = false;
         p2Con.ChangeColor("#00FF00");
+        foreach(Transform child in powerupContainer.transform)
+        {
+            StartCoroutine(child.gameObject.GetComponent<Powerup>().EnableAndDisable(10f));
+        }
 
-        //TODO restet powerup
+
+
     }
 }

@@ -30,7 +30,7 @@ public class Powerup : MonoBehaviour
             int randomIndex = Random.Range(1,6);
 
             PlayerController.dashController = false;
-            PlayerController.doublejumpcontroller = false;
+            PlayerController.doublejump = false;
             PlayerController.moveSpeed = 3.5f;
             PlayerController.flycontroller = false;
 
@@ -42,8 +42,9 @@ public class Powerup : MonoBehaviour
                 PlayerController.moveSpeed = 5.5f;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#FAA0A0");
-                    
+                PlayerController.ChangeColor("#FFCDCD");
+                PlayerController.doublejumpcontroller = false;
+
             }
 
             else if (randomIndex == 2)
@@ -53,8 +54,9 @@ public class Powerup : MonoBehaviour
                 PlayerController.dashController = true;
                     
                     //�ndre p� farven
-                PlayerController.ChangeColor("#702963");
-                    
+                PlayerController.ChangeColor("#FF8E8E");
+                PlayerController.doublejumpcontroller = false;
+
             }
 
             else if (randomIndex == 3)
@@ -62,8 +64,8 @@ public class Powerup : MonoBehaviour
                 // reset til ingen powerups
                 PlayerController.dashController = false;
                 PlayerController.moveSpeed = 3.5f;
-                PlayerController.dashController = false;
                 PlayerController.flycontroller = false;
+                PlayerController.doublejumpcontroller = false;
 
 
                 //�ndre p� farven
@@ -77,7 +79,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.doublejumpcontroller = true;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#EC5800");
+                PlayerController.ChangeColor("#FF5555");
 
             }
             else if (randomIndex == 5)
@@ -87,7 +89,8 @@ public class Powerup : MonoBehaviour
                 PlayerController.flycontroller = true;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#000000");
+                PlayerController.ChangeColor("#B82F2F");
+                PlayerController.doublejumpcontroller = false;
 
             }
         }
@@ -104,8 +107,9 @@ public class Powerup : MonoBehaviour
 
             PlayerController.dashController = false;
             PlayerController.moveSpeed = 4f;
-            PlayerController.doublejumpcontroller = false;
             PlayerController.flycontroller = false;
+            PlayerController.doublejump = false;
+
 
 
 
@@ -116,7 +120,8 @@ public class Powerup : MonoBehaviour
                 PlayerController.moveSpeed = 5;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#DFFF00");
+                PlayerController.ChangeColor("#D3D7FF");
+                PlayerController.doublejumpcontroller = false;
 
 
             }
@@ -128,7 +133,8 @@ public class Powerup : MonoBehaviour
                 PlayerController.dashController = true;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#C4B454");
+                PlayerController.ChangeColor("#A0AAFF");
+                PlayerController.doublejumpcontroller = false;
 
             }
 
@@ -142,18 +148,19 @@ public class Powerup : MonoBehaviour
 
 
 
+
                 //�ndre p� farven
-                PlayerController.ChangeColor("#00FF00");
+                PlayerController.ChangeColor("#001BFF");
             }
 
             else if (randomIndex == 4)
             {
 
-                // Lader dig dashe 
+                // Lader dig dublejump 
                 PlayerController.doublejumpcontroller = true;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#40B5AD");
+                PlayerController.ChangeColor("#6273FF");
 
             }
             else if (randomIndex == 5)
@@ -161,16 +168,17 @@ public class Powerup : MonoBehaviour
 
                 // Lader dig dashe 
                 PlayerController.flycontroller = true;
+                PlayerController.doublejumpcontroller = false;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#FFFFFF");
+                PlayerController.ChangeColor("#323FB0");
 
             }
         } 
         
     }
 
-    IEnumerator EnableAndDisable(float cooldown)
+    public IEnumerator EnableAndDisable(float cooldown)
     {
         isCooldown = true;
        
