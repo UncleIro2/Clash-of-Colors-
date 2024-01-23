@@ -18895,6 +18895,7 @@ MonoBehaviour:
   p2Wins: {fileID: 153604498}
   p1Con: {fileID: 0}
   p2Con: {fileID: 0}
+  powerupContainer: {fileID: 828863656}
 --- !u!4 &1525728069
 Transform:
   m_ObjectHideFlags: 0

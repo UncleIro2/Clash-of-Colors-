@@ -178,7 +178,7 @@ public class Powerup : MonoBehaviour
         
     }
 
-    IEnumerator EnableAndDisable(float cooldown)
+    public IEnumerator EnableAndDisable(float cooldown)
     {
         isCooldown = true;
        
