@@ -42,7 +42,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.moveSpeed = 5.5f;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#FAA0A0");
+                PlayerController.ChangeColor("#FFCDCD");
                 PlayerController.doublejumpcontroller = false;
 
             }
@@ -54,7 +54,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.dashController = true;
                     
                     //�ndre p� farven
-                PlayerController.ChangeColor("#702963");
+                PlayerController.ChangeColor("#FF8E8E");
                 PlayerController.doublejumpcontroller = false;
 
             }
@@ -79,7 +79,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.doublejumpcontroller = true;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#EC5800");
+                PlayerController.ChangeColor("#FF5555");
 
             }
             else if (randomIndex == 5)
@@ -89,7 +89,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.flycontroller = true;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#000000");
+                PlayerController.ChangeColor("#B82F2F");
                 PlayerController.doublejumpcontroller = false;
 
             }
@@ -120,7 +120,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.moveSpeed = 5;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#DFFF00");
+                PlayerController.ChangeColor("#D3D7FF");
                 PlayerController.doublejumpcontroller = false;
 
 
@@ -133,7 +133,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.dashController = true;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#C4B454");
+                PlayerController.ChangeColor("#A0AAFF");
                 PlayerController.doublejumpcontroller = false;
 
             }
@@ -150,7 +150,7 @@ public class Powerup : MonoBehaviour
 
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#00FF00");
+                PlayerController.ChangeColor("#001BFF");
             }
 
             else if (randomIndex == 4)
@@ -160,7 +160,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.doublejumpcontroller = true;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#40B5AD");
+                PlayerController.ChangeColor("#6273FF");
 
             }
             else if (randomIndex == 5)
@@ -171,7 +171,7 @@ public class Powerup : MonoBehaviour
                 PlayerController.doublejumpcontroller = false;
 
                 //�ndre p� farven
-                PlayerController.ChangeColor("#FFFFFF");
+                PlayerController.ChangeColor("#323FB0");
 
             }
         } 
