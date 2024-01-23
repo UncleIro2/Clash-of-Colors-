@@ -13,6 +13,7 @@ public class TIMER : MonoBehaviour
 
     public void startTimer()
     {
+        Time.timeScale = 1.0f;
         TimerOn = true;
     }
 
