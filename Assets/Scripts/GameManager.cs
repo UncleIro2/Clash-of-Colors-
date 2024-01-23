@@ -20,10 +20,17 @@ public class GameManager : MonoBehaviour
     public GameObject p1Wins;
     public GameObject p2Wins;
 
+    [SerializeField]
+    PlayerController p1Con;
+    [SerializeField]
+    PlayerController p2Con;
+
     void Start()
     {
         orgPlayer1Pos = player1.transform.position;
         orgPlayer2Pos = player2.transform.position;
+        p1Con = player1.GetComponent<PlayerController>();
+        p2Con = player2.GetComponent<PlayerController>();
     }
     void Update()
     {
@@ -45,9 +52,26 @@ public class GameManager : MonoBehaviour
         player2.transform.localPosition = orgPlayer2Pos;
         player1.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player2.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        // TODO: Reset powerup
+        
+        
         Time.timeScale = 1;
         p1Wins.SetActive(false);
         p2Wins.SetActive(false);
+        
+            
+        p1Con.dashController = false;
+        p1Con.doublejumpcontroller = false;
+        p1Con.moveSpeed = 4f;
+        p1Con.flycontroller = false;
+        p1Con.ChangeColor("#FF0000");
+
+
+        p2Con.dashController = false;
+        p2Con.doublejumpcontroller = false;
+        p2Con.moveSpeed = 4f;
+        p2Con.flycontroller = false;
+        p2Con.ChangeColor("#00FF00");
+
+        //TODO restet powerup
     }
 }

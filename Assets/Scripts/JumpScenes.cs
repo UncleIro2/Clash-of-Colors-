@@ -13,9 +13,9 @@ public class SceneTransition : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
-    public void LoadGuide()
+    public void LoadGuideForrest()
     {
-        SceneManager.LoadScene("Guide");
+        SceneManager.LoadScene("GuideForrest");
 
     }
     public void LoadCredits()
@@ -54,4 +54,15 @@ public class SceneTransition : MonoBehaviour
     {
         SceneManager.LoadScene("Forrest");
     }
+
+    public void LoadIce()
+    {
+        SceneManager.LoadScene("Ice");
+    }
+    public void LoadGuideIce()
+    {
+        SceneManager.LoadScene("GuideIce");
+    }
 }
+        
+    
