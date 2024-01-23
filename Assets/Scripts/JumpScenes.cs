@@ -46,6 +46,10 @@ public class SceneTransition : MonoBehaviour
     {
         SceneManager.LoadScene("Arda");
     }
+    public void LoadZacchi()
+    {
+        SceneManager.LoadScene("Zacchi");
+    }
     public void LoadMapSelector()
     {
         SceneManager.LoadScene("MapSelector");
