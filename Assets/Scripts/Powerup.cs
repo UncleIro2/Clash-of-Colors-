@@ -156,7 +156,7 @@ public class Powerup : MonoBehaviour
             else if (randomIndex == 4)
             {
 
-                // Lader dig dashe 
+                // Lader dig dublejump 
                 PlayerController.doublejumpcontroller = true;
 
                 //�ndre p� farven
